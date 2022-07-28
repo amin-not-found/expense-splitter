@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/expense-splitter/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="content-security-policy" content="">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/start-2cefd847.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/index-dffa484d.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/index-263b6c91.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/singletons-822f6284.js">
+			<script>
+		if ('serviceWorker' in navigator) {
+			addEventListener('load', function () {
+				navigator.serviceWorker.register('/expense-splitter/service-worker.js');
+			});
+		}
+	</script>
+	</head>
+	<body>
+		
+		<script type="module" data-sveltekit-hydrate="45h">
+		import { start } from "/expense-splitter/_app/immutable/start-2cefd847.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode,
+			paths: {"base":"/expense-splitter","assets":"/expense-splitter"},
+			session: {},
+			route: true,
+			spa: true,
+			trailing_slash: "never",
+			hydrate: null
+		});
+	</script>
+	</body>
+</html>

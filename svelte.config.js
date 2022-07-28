@@ -1,5 +1,7 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
+
+const dev = false;
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,9 +10,21 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter(),
+		// Uses /docs for github pages
+		adapter: adapter({ pages: 'docs', assets: 'docs' }),
 
-		// Override http methods in the Todo forms
+		prerender: {
+			default: true
+		},
+
+		paths: {
+			base: dev ? "" : "/expense-splitter"
+		},
+
+		serviceWorker: {
+			register: true
+		},
+
 		methodOverride: {
 			allowed: ['PATCH', 'DELETE']
 		}
