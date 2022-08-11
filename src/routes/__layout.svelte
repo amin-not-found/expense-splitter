@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
-	import { config } from '../lib/stores';
-	import Footer from '../lib/components/Footer.svelte';
+	import { config } from '$lib/stores';
+	import Footer from '$lib/components/shared/Footer.svelte';
 </script>
 
 <svelte:head>
@@ -37,7 +37,7 @@
 <style>
 	main {
 		margin: 0 auto;
-		margin-top: 2%;
+		margin-top: 1%;
 		margin-bottom: 2%;
 		padding: 1rem;
 		width: 96%;

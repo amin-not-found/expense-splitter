@@ -6,7 +6,6 @@ const FILES = build.concat(files).concat(prerendered);
 
 worker.addEventListener('install', (event) => {
 	console.log('[ServiceWorker] Install');
-	console.log(prerendered);
 	event.waitUntil(
 		caches
 			.open(CACHE_NAME)

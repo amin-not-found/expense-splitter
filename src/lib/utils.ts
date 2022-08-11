@@ -14,18 +14,18 @@ export function* numericCombinations(
 	r: number,
 	loc: number[] = []
 ): IterableIterator<number[]> {
-	const idx = loc.length;
-	if (idx === r) {
+	const index = loc.length;
+	if (index === r) {
 		yield loc;
 		return;
 	}
-	for (const next of range(idx ? last(loc) + 1 : 0, n - r + idx)) {
+	for (const next of range(index ? last(loc) + 1 : 0, n - r + index)) {
 		yield* numericCombinations(n, r, loc.concat(next));
 	}
 }
 
 export function* combinations<T>(arr: T[], r: number): IterableIterator<T[]> {
-	for (const idxs of numericCombinations(arr.length, r)) {
-		yield idxs.map((i) => arr[i]);
+	for (const indices of numericCombinations(arr.length, r)) {
+		yield indices.map((i) => arr[i]);
 	}
 }

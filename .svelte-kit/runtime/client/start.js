@@ -4,6 +4,7 @@ import { assets, set_paths } from '../paths.js';
 import Root from '__GENERATED__/root.svelte';
 import { components, dictionary, matchers } from '__GENERATED__/client-manifest.js';
 import { init } from './singletons.js';
+export { set_public_env } from '../env-public.js';
 
 /**
  * @param {unknown} err
@@ -569,6 +570,9 @@ function create_client({ target, session, base, trailing_slash }) {
 		if (!ready) return;
 		session_id += 1;
 
+		const current_load_uses_session = current.branch.some((node) => node?.uses.session);
+		if (!current_load_uses_session) return;
+
 		update(new URL(location.href), [], true);
 	});
 	ready = true;
@@ -876,8 +880,11 @@ function create_client({ target, session, base, trailing_slash }) {
 		};
 
 		for (let i = 0; i < filtered.length; i += 1) {
-			const loaded = filtered[i].loaded;
-			result.props[`props_${i}`] = loaded ? await loaded.props : null;
+			// Only set props if the node actually updated. This prevents needless rerenders.
+			if (!current.branch.some((node) => node === filtered[i])) {
+				const loaded = filtered[i].loaded;
+				result.props[`props_${i}`] = loaded ? await loaded.props : null;
+			}
 		}
 
 		const page_changed =
@@ -1588,10 +1595,12 @@ function create_client({ target, session, base, trailing_slash }) {
 				const is_svg_a_element = a instanceof SVGAElement;
 				const url = get_href(a);
 
-				// Ignore if url does not have origin (e.g. `mailto:`, `tel:`.)
+				// Ignore non-HTTP URL protocols (e.g. `mailto:`, `tel:`, `myapp:`, etc.)
 				// MEMO: Without this condition, firefox will open mailer twice.
-				// See: https://github.com/sveltejs/kit/issues/4045
-				if (!is_svg_a_element && url.origin === 'null') return;
+				// See:
+				// - https://github.com/sveltejs/kit/issues/4045
+				// - https://github.com/sveltejs/kit/issues/5725
+				if (!is_svg_a_element && !(url.protocol === 'https:' || url.protocol === 'http:')) return;
 
 				// Ignore if tag has
 				// 1. 'download' attribute

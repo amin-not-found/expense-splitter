@@ -1,10 +1,9 @@
-<script context="module" lang="ts">
-	import { goto } from '$app/navigation';
-	import { base } from '$app/paths';
-	function gotoApp() {
-		goto(`${base}/app/`);
-	}
-</script>
+<script lang="ts">
+	import { manager } from '../lib/stores';
+		function gotoApp(){
+			$manager.goToRoute("/app");
+		}
+	</script>
 
 <svelte:head>
 	<title>Home</title>

@@ -10,7 +10,9 @@
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
-		"format": "prettier --write --plugin-search-dir=. ."
+		"format": "prettier --write --plugin-search-dir=. .",
+		"watch": "nodemon -V --ext '*' -w src -w static --exec 'pnpm run build && pnpm run preview'",
+		"precommit": "prettier -w src && pnpm run build"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
@@ -35,6 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"big.js": "^6.2.0",
+		"idb": "^7.0.2",
 		"just-clone": "^6.0.1"
 	}
 }

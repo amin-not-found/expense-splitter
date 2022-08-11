@@ -1,117 +1,175 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "_app/immutable/start-2cefd847.js",
+    "file": "_app/immutable/start-02090a75.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
-      "_index-dffa484d.js",
-      "_index-263b6c91.js",
-      "_singletons-822f6284.js"
+      "_index-2e9e6908.js",
+      "_singletons-001d274c.js"
     ],
     "dynamicImports": [
       "src/routes/__layout.svelte",
       ".svelte-kit/runtime/components/error.svelte",
-      "src/routes/app/expense.svelte",
+      "src/routes/app/__layout.svelte",
+      "src/routes/app/event.svelte",
       "src/routes/app/index.svelte",
       "src/routes/index.svelte"
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "_app/immutable/pages/__layout.svelte-c6925e50.js",
+    "file": "_app/immutable/pages/__layout.svelte-0c321353.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-dffa484d.js",
-      "_stores-235862f0.js",
-      "_index-263b6c91.js"
+      "_index-2e9e6908.js",
+      "_stores-a14884fd.js",
+      "_singletons-001d274c.js"
     ],
     "css": [
-      "_app/immutable/assets/__layout-5cfde90d.css"
+      "_app/immutable/assets/__layout-2bb5dee5.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
-    "file": "_app/immutable/error.svelte-55168e73.js",
+    "file": "_app/immutable/error.svelte-d5f433e5.js",
     "src": ".svelte-kit/runtime/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-dffa484d.js"
+      "_index-2e9e6908.js"
     ]
   },
-  "src/routes/app/expense.svelte": {
-    "file": "_app/immutable/pages/app/expense.svelte-8af75522.js",
-    "src": "src/routes/app/expense.svelte",
+  "src/routes/app/__layout.svelte": {
+    "file": "_app/immutable/pages/app/__layout.svelte-8e7c2387.js",
+    "src": "src/routes/app/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-dffa484d.js",
-      "_stores-235862f0.js",
-      "_index-263b6c91.js"
+      "_index-2e9e6908.js",
+      "_Loading-72a23643.js",
+      "_Modal-8f96ab8e.js",
+      "_stores-a14884fd.js",
+      "_singletons-001d274c.js"
+    ]
+  },
+  "src/routes/app/event.svelte": {
+    "file": "_app/immutable/pages/app/event.svelte-9e9bd54c.js",
+    "src": "src/routes/app/event.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-2e9e6908.js",
+      "_Modal-8f96ab8e.js",
+      "_stores-a14884fd.js",
+      "_ModalController-c4437854.js",
+      "_Loading-72a23643.js",
+      "_singletons-001d274c.js"
     ],
     "css": [
-      "_app/immutable/assets/expense-85cb8b94.css"
+      "_app/immutable/assets/event-dabad7db.css"
     ]
   },
   "src/routes/app/index.svelte": {
-    "file": "_app/immutable/pages/app/index.svelte-480e8933.js",
+    "file": "_app/immutable/pages/app/index.svelte-4537a577.js",
     "src": "src/routes/app/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-dffa484d.js",
-      "_singletons-822f6284.js",
-      "_navigation-26d96b74.js"
+      "_index-2e9e6908.js",
+      "_stores-a14884fd.js",
+      "_ModalController-c4437854.js",
+      "_singletons-001d274c.js",
+      "_Modal-8f96ab8e.js"
+    ],
+    "css": [
+      "_app/immutable/assets/index-178925e3.css"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "_app/immutable/pages/index.svelte-04332f53.js",
+    "file": "_app/immutable/pages/index.svelte-a0ad2481.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-dffa484d.js",
-      "_singletons-822f6284.js",
-      "_navigation-26d96b74.js"
+      "_index-2e9e6908.js",
+      "_stores-a14884fd.js",
+      "_singletons-001d274c.js"
     ],
     "css": [
       "_app/immutable/assets/index-69c4089e.css"
     ]
   },
-  "_index-dffa484d.js": {
-    "file": "_app/immutable/chunks/index-dffa484d.js"
+  "_index-2e9e6908.js": {
+    "file": "_app/immutable/chunks/index-2e9e6908.js"
   },
-  "_index-263b6c91.js": {
-    "file": "_app/immutable/chunks/index-263b6c91.js",
+  "_singletons-001d274c.js": {
+    "file": "_app/immutable/chunks/singletons-001d274c.js",
     "imports": [
-      "_index-dffa484d.js"
+      "_index-2e9e6908.js"
     ]
   },
-  "_singletons-822f6284.js": {
-    "file": "_app/immutable/chunks/singletons-822f6284.js"
-  },
-  "_stores-235862f0.js": {
-    "file": "_app/immutable/chunks/stores-235862f0.js",
+  "_stores-a14884fd.js": {
+    "file": "_app/immutable/chunks/stores-a14884fd.js",
     "imports": [
-      "_index-263b6c91.js"
+      "_singletons-001d274c.js"
     ]
   },
-  "_navigation-26d96b74.js": {
-    "file": "_app/immutable/chunks/navigation-26d96b74.js",
+  "_Loading-72a23643.js": {
+    "file": "_app/immutable/chunks/Loading-72a23643.js",
     "imports": [
-      "_singletons-822f6284.js"
+      "_index-2e9e6908.js"
+    ],
+    "css": [
+      "_app/immutable/assets/Loading-10ba07d6.css"
     ]
   },
-  "src/routes/__layout.css": {
-    "file": "_app/immutable/assets/__layout-5cfde90d.css",
-    "src": "src/routes/__layout.css"
+  "_Modal-8f96ab8e.js": {
+    "file": "_app/immutable/chunks/Modal-8f96ab8e.js",
+    "imports": [
+      "_index-2e9e6908.js",
+      "_stores-a14884fd.js"
+    ],
+    "css": [
+      "_app/immutable/assets/Modal-e2c2d818.css"
+    ]
+  },
+  "_ModalController-c4437854.js": {
+    "file": "_app/immutable/chunks/ModalController-c4437854.js",
+    "imports": [
+      "_index-2e9e6908.js",
+      "_stores-a14884fd.js",
+      "_Modal-8f96ab8e.js"
+    ],
+    "css": [
+      "_app/immutable/assets/ModalController-c18533c9.css"
+    ]
+  },
+  "Loading.css": {
+    "file": "_app/immutable/assets/Loading-10ba07d6.css",
+    "src": "Loading.css"
+  },
+  "Modal.css": {
+    "file": "_app/immutable/assets/Modal-e2c2d818.css",
+    "src": "Modal.css"
   },
   "src/routes/index.css": {
     "file": "_app/immutable/assets/index-69c4089e.css",
     "src": "src/routes/index.css"
   },
-  "src/routes/app/expense.css": {
-    "file": "_app/immutable/assets/expense-85cb8b94.css",
-    "src": "src/routes/app/expense.css"
+  "src/routes/__layout.css": {
+    "file": "_app/immutable/assets/__layout-2bb5dee5.css",
+    "src": "src/routes/__layout.css"
+  },
+  "ModalController.css": {
+    "file": "_app/immutable/assets/ModalController-c18533c9.css",
+    "src": "ModalController.css"
+  },
+  "src/routes/app/event.css": {
+    "file": "_app/immutable/assets/event-dabad7db.css",
+    "src": "src/routes/app/event.css"
+  },
+  "src/routes/app/index.css": {
+    "file": "_app/immutable/assets/index-178925e3.css",
+    "src": "src/routes/app/index.css"
   }
 }

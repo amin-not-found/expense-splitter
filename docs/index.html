@@ -2,7 +2,13 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="description" content="Settle debts easily" />
+		<meta name="theme-color" content="#d1d1e9" />
+
+		<!-- TODO: Move dollar on coin a bit higher and also ove arrows higher -->
 		<link rel="icon" href="/expense-splitter/favicon.png" />
+		<link rel="manifest" href="/expense-splitter/web-manifest.json" />
+		<link rel="apple-touch-icon" href="/expense-splitter/icons/icon-192x192.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="content-security-policy" content=""><title>Home</title><style data-svelte="svelte-lruhyz">:root {
 				--c1: #fffffe; /* Background */
@@ -12,16 +18,14 @@
 				--c5: #2b2c34; /* Text */
 			}
 		</style><meta name="description" content="SExpense splitter app" data-svelte="svelte-ruftz3">
-	<link rel="stylesheet" href="/expense-splitter/_app/immutable/assets/__layout-5cfde90d.css">
+	<link rel="stylesheet" href="/expense-splitter/_app/immutable/assets/__layout-2bb5dee5.css">
 	<link rel="stylesheet" href="/expense-splitter/_app/immutable/assets/index-69c4089e.css">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/start-2cefd847.js">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/index-dffa484d.js">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/index-263b6c91.js">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/singletons-822f6284.js">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/pages/__layout.svelte-c6925e50.js">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/stores-235862f0.js">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/pages/index.svelte-04332f53.js">
-	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/navigation-26d96b74.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/start-02090a75.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/index-2e9e6908.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/singletons-001d274c.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/pages/__layout.svelte-0c321353.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/chunks/stores-a14884fd.js">
+	<link rel="modulepreload" href="/expense-splitter/_app/immutable/pages/index.svelte-a0ad2481.js">
 			<script>
 		if ('serviceWorker' in navigator) {
 			addEventListener('load', function () {
@@ -36,22 +40,25 @@
 
 
 
-<main class="svelte-m04eqt">
+<main class="svelte-1gziw1k">
 
 <section class="svelte-cwvxqz"><h1 class="svelte-cwvxqz">Welcome to expense splitter</h1>
 	<button>Use the app</button>
 </section></main>
 
 <footer class="svelte-1f3uf7m"><button class="svelte-1f3uf7m">Set theme to dark 🌑</button>
-	<button class="svelte-1f3uf7m">Install expense splitter ⬇️</button>
-	<p>Made by @amin-pro</p>
+	
+	<p>Made by <a href="https://github.com/amin-pro">@amin-pro</a></p>
 </footer>
 
 
-		<script type="module" data-sveltekit-hydrate="116eqan">
-		import { start } from "/expense-splitter/_app/immutable/start-2cefd847.js";
+		<script type="module" data-sveltekit-hydrate="v6bw1v">
+		import { set_public_env, start } from "/expense-splitter/_app/immutable/start-02090a75.js";
+
+		set_public_env({});
+
 		start({
-			target: document.querySelector('[data-sveltekit-hydrate="116eqan"]').parentNode,
+			target: document.querySelector('[data-sveltekit-hydrate="v6bw1v"]').parentNode,
 			paths: {"base":"/expense-splitter","assets":"/expense-splitter"},
 			session: {},
 			route: true,
@@ -60,7 +67,7 @@
 			hydrate: {
 				status: 200,
 				error: null,
-				nodes: [0, 4],
+				nodes: [0, 5],
 				params: {},
 				routeId: ""
 			}

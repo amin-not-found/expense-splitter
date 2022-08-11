@@ -1,10 +1,11 @@
-import { writable } from 'svelte/store';
+import { writable, type Updater } from 'svelte/store';
 import { Config } from './config';
+import { ExpenseEvent } from './database';
 import { Manager } from './manager';
 import { Expense, Splitter } from './splitter';
 
 function mockedSplitter(): Splitter {
-	const splitter = new Splitter();
+	const splitter = new Splitter(new ExpenseEvent());
 	splitter.addPerson('MEe');
 	splitter.addPerson('MEe2');
 	splitter.addPerson('YoU');
@@ -24,22 +25,30 @@ function mockedSplitter(): Splitter {
 	return splitter;
 }
 
-function createManager() {
-	const { subscribe: subscribe, update: update } = writable(new Manager(mockedSplitter()));
-	// we will wrap methods that we want svelte to update the components
-	const wrapFunc =
-		(method: string) =>
+type UpdateFunction<T> = (this: void, updater: Updater<T>) => void;
+
+function wrapFuncGenerator<T>(updateFunc: UpdateFunction<T>) {
+	return (method: string) =>
 		(...args: unknown[]) => {
 			let ret;
-			update((value) => {
+			updateFunc((value) => {
 				// @ts-expect-error: it is dirty code but i don't have any way around it
 				ret = value[method](...args);
 				return value;
 			});
 			return ret;
 		};
+}
+
+function createManager() {
+	const { subscribe: subscribe, update: update } = writable(new Manager(mockedSplitter()));
+	// we will wrap methods that we want svelte to update the components
+	const wrapFunc = wrapFuncGenerator(update);
 	const temp = new Manager();
 	const methods = {
+		eventDialog: wrapFunc('eventDialog') as unknown as typeof temp.eventDialog,
+		createEvent: wrapFunc('createEvent') as unknown as typeof temp.createEvent,
+		initEvent: wrapFunc('initEvent') as unknown as typeof temp.initEvent,
 		addPerson: wrapFunc('addPerson') as unknown as typeof temp.addPerson,
 		removePerson: wrapFunc('removePerson') as unknown as typeof temp.removePerson,
 		createExpense: wrapFunc('createExpense') as unknown as typeof temp.createExpense,
@@ -48,7 +57,8 @@ function createManager() {
 		deleteExpenses: wrapFunc('deleteExpenses') as unknown as typeof temp.deleteExpenses,
 		confirmDelete: wrapFunc('confirmDelete') as unknown as typeof temp.confirmDelete,
 		dismissModal: wrapFunc('dismissModal') as unknown as typeof temp.dismissModal,
-		evaluate: wrapFunc('evaluate') as unknown as typeof temp.evaluate
+		evaluateExpenses: wrapFunc('evaluateExpenses') as unknown as typeof temp.evaluateExpenses,
+		setInstallEvent: wrapFunc('setInstallEvent') as unknown as typeof temp.setInstallEvent
 	};
 
 	return { subscribe, ...methods };
@@ -57,22 +67,12 @@ function createManager() {
 function createConfig() {
 	const { subscribe: subscribe, update: update } = writable(new Config());
 	// we will wrap methods that we want svelte to update the components
-	const wrapFunc =
-		(method: string) =>
-		(...args: unknown[]) => {
-			let ret;
-			update((value) => {
-				// @ts-expect-error: it is dirty code but i don't have any way around it
-				ret = value[method](...args);
-				localStorage.setItem('', JSON.stringify([...value.config.entries()]));
-				return value;
-			});
-			return ret;
-		};
+	const wrapFunc = wrapFuncGenerator(update);
 	// TODO : maybe find a better way that doesn't cause problems for typescript typing and hinting
 	const temp = new Config();
 	const methods = {
-		toggleTheme: wrapFunc('toggleTheme') as unknown as typeof temp.toggleTheme
+		toggleTheme: wrapFunc('toggleTheme') as unknown as typeof temp.toggleTheme,
+		setCurrentEvent: wrapFunc('setCurrentEvent') as unknown as typeof temp.setCurrentEvent
 	};
 
 	return { subscribe, ...methods };

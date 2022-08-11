@@ -1,4 +1,5 @@
 import Big from 'big.js';
+import type { ExpenseEvent } from './database';
 import { combinations } from './utils';
 
 export class Expense {
@@ -14,7 +15,7 @@ export class Expense {
 }
 
 export class Transaction {
-	constructor(readonly giver: string, readonly reciver: string, readonly amount: number) {}
+	constructor(readonly giver: string, readonly receiver: string, readonly amount: number) {}
 }
 
 interface Balance {
@@ -23,57 +24,60 @@ interface Balance {
 }
 
 class Splitter {
-	expenses: Expense[] = [];
-	constructor(public people: Set<string> = new Set()) {}
+	constructor(public event: ExpenseEvent) {}
+
+	fromDBObj(event: ExpenseEvent) {
+		this.event = event;
+	}
 	// return error if person already exist
 	addPerson(name: string): string | null {
 		if (!name) {
 			return "Person name can't be empty.";
 		}
-		if (this.people.has(name)) {
+		if (this.event.attendees.has(name)) {
 			return `A person with name "${name}" already exists`;
 		}
-		this.people.add(name);
+		this.event.attendees.add(name);
 		return null;
 	}
 	removePerson(name: string) {
 		// Loop over expenses
 		// Delete expenses with this person as the payer
 		// Remove this person from the the debtors of expenses
-		for (let i = 0; i < this.expenses.length; i++) {
-			const expense = this.expenses[i];
+		for (let i = 0; i < this.event.expenses.length; i++) {
+			const expense = this.event.expenses[i];
 			expense.debtors.delete(name);
 
 			if (expense.payer === name) {
-				this.expenses.splice(i, 1);
+				this.event.expenses.splice(i, 1);
 				i--;
 			}
 		}
-		this.people.delete(name);
+		this.event.attendees.delete(name);
 	}
 
 	addExpense(expense: Expense): undefined | string {
 		const error = this.validateExpense(expense);
 		if (error) return error;
-		if (this.expenses.some((e) => e.name === expense.name))
+		if (this.event.expenses.some((e) => e.name === expense.name))
 			return `An expense with "${expense.name}" as name already exists`;
-		this.expenses = [...this.expenses, expense];
+		this.event.expenses.push(expense);
 	}
 	replaceExpense(name: string, newExpense: Expense): undefined | string {
 		const error = this.validateExpense(newExpense);
 		if (error) return error;
-		const index = this.expenses.findIndex((expense) => expense.name == name);
+		const index = this.event.expenses.findIndex((expense) => expense.name == name);
 		if (index < 0) {
 			return `Expense with ${name} as name doesn't exist`;
 		}
-		this.expenses.splice(index, 1, newExpense);
+		this.event.expenses.splice(index, 1, newExpense);
 	}
 	deleteExpense(name: string): undefined | string {
-		const index = this.expenses.findIndex((expense) => expense.name == name);
+		const index = this.event.expenses.findIndex((expense) => expense.name == name);
 		if (index < 0) {
 			return `Expense with ${name} as name name doesn't exist`;
 		}
-		this.expenses.splice(index, 1);
+		this.event.expenses.splice(index, 1);
 	}
 	validateExpense(expense: Expense): undefined | string {
 		if (!expense.payer) return 'Please select someone as the payer';
@@ -84,8 +88,8 @@ class Splitter {
 	}
 	getNetBalances(): Map<string, Big> {
 		const res = new Map<string, Big>();
-		this.people.forEach((name) => res.set(name, Big(0)));
-		for (const expense of this.expenses) {
+		this.event.attendees.forEach((name) => res.set(name, Big(0)));
+		for (const expense of this.event.expenses) {
 			const amount = Big(expense.amount);
 			res.set(expense.payer, res.get(expense.payer)!.minus(amount));
 			const debt = amount.div(expense.debtors.size);
@@ -101,24 +105,24 @@ class Splitter {
 			const receiver = balances[0].name;
 			let transactionAmount = 0;
 			// amount with smaller absolute value will be removed certainly
-			// Remember, last index is positive, fisr index is negative.
+			// Remember, last index is positive, first index is negative.
 			// Also items with higher index should be removed first
 			// so items with lower index aren't affected
 			switch (balances[0].amount.abs().cmp(balances[lastIdx].amount.abs())) {
 				case 0:
-					// giver and reciver have equal absolue balance
+					// giver and receiver have equal absolute balance
 					transactionAmount = balances[lastIdx].amount.toNumber();
 					balances.splice(lastIdx, 1);
 					balances.splice(0, 1);
 					break;
 				case -1:
-					// receiver(blanaces[0]) has less absolute balance
+					// receiver(balances[0]) has less absolute balance
 					transactionAmount = balances[0].amount.abs().toNumber();
 					balances[lastIdx].amount = balances[lastIdx].amount.add(balances[0].amount);
 					balances.splice(0, 1);
 					break;
 				case 1:
-					// giver(balances[-1]) has less absolue balance
+					// giver(balances[-1]) has less absolute balance
 					transactionAmount = balances[lastIdx].amount.toNumber();
 					balances[0].amount = balances[0].amount.add(balances[lastIdx].amount);
 					balances.splice(lastIdx, 1);
@@ -134,7 +138,7 @@ class Splitter {
 		balances = balances.filter((b) => !b.amount.eq(0));
 		// Here we don't need the array to be sorted.
 		// But if we sort the array once now, we won't need
-		// to sort it in naive_setvtle every time it's called
+		// to sort it in naive_settle every time it's called
 		// TODO Skip while(below code) if len is big and just use naive method
 		balances = balances.sort((b1, b2) => b1.amount.minus(b2.amount).toNumber());
 		let len = balances.length;
