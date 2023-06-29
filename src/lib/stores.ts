@@ -4,6 +4,7 @@ import { ExpenseEvent } from './database';
 import { Manager } from './manager';
 import { Expense, Splitter } from './splitter';
 
+// TODO : Delete
 function mockedSplitter(): Splitter {
 	const splitter = new Splitter(new ExpenseEvent());
 	splitter.addPerson('MEe');
@@ -51,6 +52,7 @@ function createManager() {
 		initEvent: wrapFunc('initEvent') as unknown as typeof temp.initEvent,
 		addPerson: wrapFunc('addPerson') as unknown as typeof temp.addPerson,
 		removePerson: wrapFunc('removePerson') as unknown as typeof temp.removePerson,
+		killPeople: wrapFunc('killPeople') as unknown as typeof temp.killPeople,
 		createExpense: wrapFunc('createExpense') as unknown as typeof temp.createExpense,
 		submitExpense: wrapFunc('submitExpense') as unknown as typeof temp.submitExpense,
 		editExpense: wrapFunc('editExpense') as unknown as typeof temp.editExpense,

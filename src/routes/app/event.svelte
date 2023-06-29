@@ -20,11 +20,28 @@
 	if (eventId > 0) {
 		promise = manager.initEvent(eventId);
 	}
+	// @ts-expect-error
+	window.clearPeople = function(){
+		$manager.killPeople($manager.people);
+	}
+	// @ts-expect-error
+	window.addPeople=function(n: number){
+		for (let i = 0; i < n; i++) {
+			manager.addPerson(i.toString());
+			
+		}
+	}
+	// @ts-expect-error 
+	window.timeEvaluate = function(){
+		console.time()
+		manager.evaluateExpenses();
+		console.timeEnd();
+	}
 </script>
 
 {#await promise}
 	<Modal><Loading>Loading the event..</Loading></Modal>
-	<div class="empty spave"/>
+	<div class="empty spave" />
 {:then _}
 	<PersonList />
 	<hr />
@@ -33,7 +50,6 @@
 	<hr />
 	<Results />
 {/await}
-
 
 <style>
 	hr {

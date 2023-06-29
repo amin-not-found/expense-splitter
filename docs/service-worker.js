@@ -1,11 +1,11 @@
 const r = [
-  "/expense-splitter/_app/immutable/start-02090a75.js",
+  "/expense-splitter/_app/immutable/start-c795b063.js",
   "/expense-splitter/_app/immutable/pages/__layout.svelte-0c321353.js",
   "/expense-splitter/_app/immutable/assets/__layout-2bb5dee5.css",
   "/expense-splitter/_app/immutable/error.svelte-d5f433e5.js",
   "/expense-splitter/_app/immutable/pages/app/__layout.svelte-8e7c2387.js",
-  "/expense-splitter/_app/immutable/pages/app/event.svelte-9e9bd54c.js",
-  "/expense-splitter/_app/immutable/assets/event-dabad7db.css",
+  "/expense-splitter/_app/immutable/pages/app/event.svelte-e2221b45.js",
+  "/expense-splitter/_app/immutable/assets/event-c6c70e0b.css",
   "/expense-splitter/_app/immutable/pages/app/index.svelte-4537a577.js",
   "/expense-splitter/_app/immutable/assets/index-178925e3.css",
   "/expense-splitter/_app/immutable/pages/index.svelte-a0ad2481.js",
@@ -38,7 +38,7 @@ const r = [
   "/expense-splitter/app",
   "/expense-splitter/app/event",
   "/expense-splitter"
-], a = "1660208810800", p = self, l = `cache-${a}`, x = r.concat(c).concat(o);
+], a = "1660209374993", p = self, l = `cache-${a}`, x = r.concat(c).concat(o);
 p.addEventListener("install", (e) => {
   console.log("[ServiceWorker] Install"), e.waitUntil(
     caches.open(l).then((s) => s.addAll(x)).then(() => {
