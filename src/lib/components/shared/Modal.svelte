@@ -1,5 +1,5 @@
 <script lang="ts">
-import { manager } from '$lib/stores';
+	import { manager } from '$lib/stores';
 
 	// useful resources to do so:
 	// https://hiddedevries.nl/en/blog/2017-01-29-using-javascript-to-trap-focus-in-an-element

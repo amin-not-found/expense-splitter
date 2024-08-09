@@ -40,7 +40,7 @@
 		{/if}
 
 		<button on:click={dismiss}>Close</button>
-		
+
 		<input type="submit" />
 	</div>
 </form>

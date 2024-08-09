@@ -1,0 +1,13 @@
+{
+	"/": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/app": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/app/event": [
+		"src/routes/+layout.ts"
+	]
+}

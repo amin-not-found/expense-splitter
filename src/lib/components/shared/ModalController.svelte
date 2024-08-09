@@ -4,7 +4,7 @@
 	import DeleteDialog from './DeleteDialog.svelte';
 	import ExpenseEditor from '../event/ExpenseEditor.svelte';
 	import Modal from '../shared/Modal.svelte';
-import EventForm from '../app-home/EventForm.svelte';
+	import EventForm from '../app-home/EventForm.svelte';
 
 	$: visible = $manager.mode !== Mode.None;
 	const modesNeedingEditor = [Mode.CreateExpense, Mode.EditExpense];

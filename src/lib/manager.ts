@@ -1,4 +1,4 @@
-import { dev } from '$app/env';
+import { dev } from '$app/environment';
 import { goto } from '$app/navigation';
 import { base } from '$app/paths';
 import clone from 'just-clone';
@@ -61,7 +61,7 @@ export class Manager {
 		this.setState(Mode.CreateEvent, []);
 	}
 
-	updateEvent(){
+	updateEvent() {
 		this._db.updateEvent(this.splitter.event);
 	}
 
@@ -79,7 +79,7 @@ export class Manager {
 		const event = await this._db.getEvent(eventId);
 		if (!event) throw "Couldn't fetch created event";
 
-		event.openedTime = Date.now()
+		event.openedTime = Date.now();
 		this._db.updateEvent(event);
 
 		this.splitter.fromDBObj(event);
@@ -95,8 +95,8 @@ export class Manager {
 
 	addPerson(name: string) {
 		const error = this.splitter.addPerson(name);
-		if(error) return error
-		this.updateEvent()
+		if (error) return error;
+		this.updateEvent();
 		this._db.addAttendee(name, this.splitter.event);
 		return error;
 	}
@@ -106,14 +106,14 @@ export class Manager {
 		return this.setState(Mode.RemovePerson, [name]);
 	}
 
-	killPeople(people: string[]){
-		if(!dev){
-			throw "Should be running on dev to call killPeople."
+	killPeople(people: Iterable<string>) {
+		if (!dev) {
+			throw 'Should be running on dev to call killPeople.';
 		}
-		people.forEach((name) => {
+		for (const name of people) {
 			this.splitter.removePerson(name);
 			this._db.removeAttendee(name, this.splitter.event);
-		});
+		}
 	}
 
 	createExpense() {

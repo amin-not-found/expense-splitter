@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ExpenseEvent } from '$lib/database';
-	import { config,manager } from '$lib/stores';
+	import { config, manager } from '$lib/stores';
 	export let event: ExpenseEvent;
 	let created = new Date(event.createdTime).toLocaleString();
 	let opened = new Date(event.openedTime).toLocaleString();
@@ -23,10 +23,10 @@
 <style>
 	.event {
 		margin: 5px;
-        margin-bottom: 10px;
+		margin-bottom: 10px;
 		padding: 7px;
 		background-color: var(--c2);
-        color: var(--c5);
+		color: var(--c5);
 		border-radius: 7px;
 	}
 	.event:hover {

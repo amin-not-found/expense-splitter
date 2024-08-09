@@ -57,8 +57,8 @@
 		button {
 			width: 90%;
 		}
-		select{
-			width:86%
+		select {
+			width: 86%;
 		}
 	}
 </style>

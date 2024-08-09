@@ -13,20 +13,12 @@ const config = {
 		// Uses /docs for github pages
 		adapter: adapter({ pages: 'docs', assets: 'docs' }),
 
-		prerender: {
-			default: true
-		},
-
 		paths: {
-			base: dev ? "" : "/expense-splitter"
+			base: dev ? '' : '/expense-splitter'
 		},
 
 		serviceWorker: {
 			register: true
-		},
-
-		methodOverride: {
-			allowed: ['PATCH', 'DELETE']
 		}
 	}
 };

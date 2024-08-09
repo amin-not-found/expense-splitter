@@ -62,7 +62,7 @@
 		background-color: var(--c2);
 		color: var(--c5);
 	}
-	input::placeholder{
+	input::placeholder {
 		color: var(--c3);
 	}
 	button {

@@ -4,17 +4,16 @@
 	export let size = '150';
 </script>
 
-	<div class="wrapper" style="--size: {size}px; --duration: {duration + 's'};">
-		{#each [...Array(3).keys()] as version}
-			<div class="circle" style="animation-delay: {(duration / 3) * (version - 1) + 's'};" />
-		{/each}
-	</div>
-	<div class="container"><slot /></div>
+<div class="wrapper" style="--size: {size}px; --duration: {duration + 's'};">
+	{#each [...Array(3).keys()] as version}
+		<div class="circle" style="animation-delay: {(duration / 3) * (version - 1) + 's'};" />
+	{/each}
+</div>
+<div class="container"><slot /></div>
 
 <style>
-
 	.wrapper {
-    margin: auto;
+		margin: auto;
 		width: var(--size);
 		height: var(--size);
 	}
@@ -41,10 +40,10 @@
 			transform: scale(1);
 		}
 	}
-  .container{
-    font-size: larger;
-    text-align: center;
-    margin: 10px;
-    margin-top: 15px;
-  }
+	.container {
+		font-size: larger;
+		text-align: center;
+		margin: 10px;
+		margin-top: 15px;
+	}
 </style>
