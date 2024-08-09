@@ -28,7 +28,6 @@ class ExpenseEvent {
     this.evaluatedDebts = evaluatedDebts;
     this.openedTime = this.createdTime;
   }
-  openedTime;
 }
 var EventOrder = /* @__PURE__ */ ((EventOrder2) => {
   EventOrder2["Name"] = "name";
@@ -37,9 +36,10 @@ var EventOrder = /* @__PURE__ */ ((EventOrder2) => {
   return EventOrder2;
 })(EventOrder || {});
 class Database {
-  dbName = "expense-splitter";
-  dbVersion = 1;
-  _db;
+  constructor() {
+    this.dbName = "expense-splitter";
+    this.dbVersion = 1;
+  }
   async initDB() {
     if (!("indexedDB" in window))
       return;

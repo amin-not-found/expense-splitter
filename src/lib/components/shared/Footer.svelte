@@ -16,7 +16,7 @@
 	{#if $manager.installEvent != null}
 		<button on:click={install}> Install expense splitter ⬇️</button>
 	{/if}
-	<p>Made by <a href="https://github.com/amin-pro">@amin-pro</a></p>
+	<p>Made by <a href="https://github.com/amin-not-found">@amin-not-found</a></p>
 </footer>
 
 <style>

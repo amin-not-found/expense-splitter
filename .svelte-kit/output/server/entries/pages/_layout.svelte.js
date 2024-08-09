@@ -16,7 +16,7 @@ const Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_config();
   return `<footer class="svelte-1f3uf7m"><button class="svelte-1f3uf7m">Set theme to ${escape($config.darkTheme ? "light ☀️" : "dark 🌑")}</button>
 	${$manager.installEvent != null ? `<button class="svelte-1f3uf7m">Install expense splitter ⬇️</button>` : ``}
-	<p>Made by <a href="https://github.com/amin-pro">@amin-pro</a></p>
+	<p>Made by <a href="https://github.com/amin-not-found">@amin-not-found</a></p>
 </footer>`;
 });
 const _layout_svelte_svelte_type_style_lang = "";
